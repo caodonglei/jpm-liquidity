@@ -1,0 +1,2 @@
+""" Strategies for self-trade
+"""
