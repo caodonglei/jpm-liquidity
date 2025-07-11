@@ -15,11 +15,7 @@ from jpm_config import ST_STRATEGY
 
 
 async def self_trade(symbol: str, param: dict, rand_val: int) -> bool:
-    ### strategy assembly
-
-    # random_coef in [0.9995 ~ 1.0005]
-    qty_random_coef = 0.9995 + 0.00001 * rand_val
-
+    # get 
     base_price = 0
     # get recent trade from hedge
     trade = get_ticker(param['quote_exchange'], param['quote_symbol'])
@@ -73,6 +69,11 @@ async def self_trade(symbol: str, param: dict, rand_val: int) -> bool:
         # mock trade using previous st price
         price = pre_st_status['price']
         qty = 0.5 * (top_ask_qty + top_bid_aty) * qty_random_coef
+
+    ### strategy assembly
+
+    # random_coef in [0.9995 ~ 1.0005]
+    qty_random_coef = 0.9995 + 0.00001 * rand_val
 
     price = round(price, price_decimals)
     self.logger.debug('symbol %s ,price %s,qty %s', symbol, price, qty)
