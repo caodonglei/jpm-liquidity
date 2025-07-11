@@ -21,8 +21,10 @@ LOGGER = create_logger(CURR_DIR, "jpm_selftrade.log", 'JPM_SELFTRADE', backup_cn
 
 def gen_cached_random_number(size: int):
     # cached random number pool: range 0..100
+    rand_values = list(range(100))
+    random.shuffle(rand_values)
     _random_index = 0
-    _random_values = random.shuffle(list(range(100)))[:size]
+    _random_values = rand_values[:size]
     while 1:
         if _random_index >= size:
             _random_index = 0
